@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:knowme/tabbarriwayat/hal_meminta.dart' as meminta;
+import 'package:knowme/tabbarriwayat/hal_mengirim.dart' as mengirim;
 
 class Riwayat extends StatefulWidget {
   @override
@@ -26,19 +28,29 @@ class _RiwayatState extends State<Riwayat> with SingleTickerProviderStateMixin {
       initialIndex: 0,
       child: Scaffold(
         appBar: new AppBar(
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.grey[900],
           title: new Text('Riwayat'),
           centerTitle: true,
           elevation: 0,
           bottom: new TabBar(
+            indicator: UnderlineTabIndicator(
+              insets: EdgeInsets.symmetric(horizontal: 2.0, vertical: 2.0),
+            ),
             controller: controller,
             tabs: <Widget>[
-              new Tab(icon: new Icon(Icons.computer),),
-              new Tab(icon: new Icon(Icons.radio),),
+              new Tab(text: "Meminta"),
+              new Tab(text: "Mengirim"),
             ],
           ),
         ),
-        body: Text('Riwayat Screen'),
+        body: new TabBarView(
+          controller: controller,
+          children: <Widget>[
+            new meminta.Meminta(),
+            new mengirim.Mengirim()
+          ],
+        ),
+        // body: Text('Riwayat Screen'),
       ),
     );
   }

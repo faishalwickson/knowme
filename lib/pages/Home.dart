@@ -20,7 +20,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.grey[900],
         title: Text('KnowMe'),
         centerTitle: true,
         elevation: 0,
@@ -89,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.grey[900],
         title: Text(widget.title),
       ),
       body: Center(
