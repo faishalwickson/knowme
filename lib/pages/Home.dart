@@ -25,21 +25,16 @@ class _HomeState extends State<Home> {
         title: Text('KnowMe'),
         centerTitle: true,
         elevation: 0,
-      ),
-      body: SafeArea(
-        child: Column(
-          children: <Widget>[
-            FlatButton.icon(
-              onPressed: () {
-                Navigator.pushNamed(context, '/Riwayat');
-              },
-              icon: Icon(Icons.history),
-              label: Text('Riwayat'),
+        actions: <Widget>[
+          FlatButton.icon(
+            onPressed: () {
+              Navigator.pushNamed(context, '/Riwayat');
+            },
+            icon: Icon(Icons.history, color: Colors.white,),
+            label: Text(''),
             )
-          ],
-        ),
+        ],
       ),
-
     );
   }
 }
