@@ -27,12 +27,12 @@ class Meminta extends StatefulWidget {
 
 class _MemintaState extends State<Meminta> {
   void setupPerson(){
-    Person instance = Person(nama: 'Kesbor', username: '@kesborian', foto: 'photo-1581382575275-97901c2635b7.webp');
+    Person instance = Person(nama: 'Kesbor', username: '@kesborian', foto: 'jakob-owens-bQ0TogIULCM-unsplash.jpg');
   }
   List<Person> daftar = [
-    Person(nama:'Udin Sanchez', username: '@ujhez', foto: 'helena-lopes-PGnqT0rXWLs-unsplash.jpg'),
-    Person(nama:'Asep Uyey', username: '@japasceria', foto: 'cobro-JDJIDtZNJsM-unsplash.jpg'),
-    Person(nama:'Data Kelas R06', username: '@ujhez, @japas ceria, ...',foto: 'pablo-no-messages.png'),
+    Person(nama:'Udin Sanchez', username: '@ujhez', foto: 'cobro-JDJIDtZNJsM-unsplash.jpg'),
+    Person(nama:'Asep Uyey', username: '@japasceria', foto: 'fred-moon-vSI2KnI4Abc-unsplash.jpg'),
+    Person(nama:'Data Kelas R06', username: '@ujhez, @japas ceria, ...',foto: 'helena-lopes-PGnqT0rXWLs-unsplash.jpg'),
   ];
 
   @override
@@ -41,13 +41,32 @@ class _MemintaState extends State<Meminta> {
       body: ListView.builder(
         itemCount: daftar.length,
         itemBuilder: (context, index){
-          return Card(
-            child: ListTile(
-              onTap: () {},
-              title: Text(daftar[index].nama),
-              leading: CircleAvatar(
-                backgroundImage: AssetImage('assets/${daftar[index]}'),
-              )
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 3.0, horizontal: 7.0),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
+                boxShadow: [
+                  BoxShadow(
+                    offset: Offset(0, 5),
+                    blurRadius: 5,
+                    color: Colors.black12,
+                  ),
+                ],
+              ),
+              child: Card(
+                child: ListTile(
+                  onTap: () {
+                    print(daftar[index].nama);
+                  },
+                  title: Text(daftar[index].nama, style: TextStyle(fontSize: 20.0) ,),
+                    subtitle: Text(daftar[index].username),
+
+                    leading: CircleAvatar(
+                    backgroundImage: AssetImage('assets/images/${daftar[index].foto}'),
+                  )
+                ),
+              ),
             ),
           );
         }
