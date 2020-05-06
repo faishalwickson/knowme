@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:knowme/tabbarriwayat/hal_meminta.dart' as meminta;
 import 'package:knowme/tabbarriwayat/hal_mengirim.dart' as mengirim;
+import 'package:knowme/services/person.dart';
+
 
 class Riwayat extends StatefulWidget {
   @override
