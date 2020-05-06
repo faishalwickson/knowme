@@ -35,6 +35,13 @@ class _HomeState extends State<Home> {
             )
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          Navigator.pushNamed(context,'/formtambahkartu');
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.grey[900],
+      )
     );
   }
 }

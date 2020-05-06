@@ -2,7 +2,6 @@
 import 'dart:convert';
 
 class Person {
-
   String nama;
   String username;
   int time;
@@ -10,6 +9,5 @@ class Person {
   String url; //api waktu?
 
   Person({ this.nama, this.username, this.time, this.foto, this.url});
-
 }
 
