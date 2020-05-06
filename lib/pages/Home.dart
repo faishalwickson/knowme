@@ -35,6 +35,32 @@ class _HomeState extends State<Home> {
             )
         ],
       ),
+        body: Container(
+          padding: EdgeInsets.fromLTRB(152.00, 10.00, 142.00, 10.00),
+          child: Text(
+            'Daftar Kartu',
+            style: TextStyle(fontSize: 20.00),
+          ),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Colors.grey[900],
+          currentIndex: 0, // this will be set when a new tab is tapped
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home,),
+              title: Text('Home'),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.import_export),
+              title: Text('Transactions'),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              title: Text('Profile'),
+            ),
+          ],
+          unselectedItemColor: Colors.white,
+        ),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
           Navigator.pushNamed(context,'/formtambahkartu');
