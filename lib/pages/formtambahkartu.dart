@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:knowme/services/information.dart';
+import 'package:knowme/services/person.dart';
+import 'package:provider/provider.dart';
 
 class TambahKartu extends StatefulWidget {
   @override
@@ -14,6 +17,15 @@ class _TambahKartuState extends State<TambahKartu> {
         centerTitle: true,
         elevation: 0,
         backgroundColor: Colors.grey[900],
+        actions: <Widget>[
+          FlatButton.icon(
+            onPressed: () {
+              Navigator.pushNamed(context, '/masukaninfo');
+            },
+            icon: Icon(Icons.adjust, color: Colors.white,),
+            label: Text(''),
+          )
+        ],
       ),
       body: Container(
         padding: EdgeInsets.all(10.0),
@@ -38,9 +50,15 @@ class _TambahKartuState extends State<TambahKartu> {
                   )
               ),
             )
+
           ],
-        )
-    )
+        ),
+    ),
+
     );
   }
 }
+
+
+
+
