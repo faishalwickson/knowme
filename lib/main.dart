@@ -3,7 +3,9 @@ import 'package:knowme/pages/Home.dart';
 import 'package:knowme/pages/Riwayat.dart';
 import 'package:knowme/pages/Transaksi_Person.dart';
 import 'package:knowme/pages/formtambahkartu.dart';
+import 'package:knowme/pages/masukangambar.dart';
 import 'package:knowme/pages/masukaninfo.dart';
+import 'package:knowme/pages/masukangambar.dart';
 
 void main() => runApp(MaterialApp(
   initialRoute: '/home',
@@ -13,5 +15,6 @@ void main() => runApp(MaterialApp(
     '/Transaksi_Person': (context) => TransaksiPerson(),
     '/formtambahkartu': (context) => TambahKartu(),
     '/masukaninfo': (context) => MyApp(),
+    '/masukangambar': (context) => Gambar(),
   }
 ));

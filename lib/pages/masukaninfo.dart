@@ -35,16 +35,17 @@ class MyHomePage extends StatelessWidget {
                           itemCount: todo.taskList.length,
                           itemBuilder: (context, index){
                             return Container(
-                              child: ListTile(
-                                contentPadding: EdgeInsets.only(left: 32, right: 32, top: 8, bottom: 8),
-                                title: Text(todo.taskList[index].title, style: TextStyle(color: Colors.black87,
-                                    fontWeight: FontWeight.bold
-                                ),),
-                                subtitle: Text(todo.taskList[index].detail, style: TextStyle(color: Colors.black87,
-                                    fontWeight: FontWeight.bold
-                                ),),
-                                trailing: Icon(Icons.check_circle, color: Colors.green),
-                              ),
+                              child:
+                                  ListTile(
+                                    contentPadding: EdgeInsets.only(left: 32, right: 32, top: 8, bottom: 8),
+                                    title: Text(todo.taskList[index].title, style: TextStyle(color: Colors.black87,
+                                        fontWeight: FontWeight.bold
+                                    ),),
+                                    subtitle: Text(todo.taskList[index].detail, style: TextStyle(color: Colors.black87,
+                                        fontWeight: FontWeight.bold
+                                    ),),
+                                    trailing: Icon(Icons.check_circle, color: Colors.green),
+                                  ),
                             );
                           }
                       );
