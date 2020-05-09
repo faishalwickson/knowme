@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:knowme/pages/Dashboard.dart';
+
+import './Profile.dart';
+import './Transaction.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -16,6 +20,14 @@ class _HomeState extends State<Home> {
 
 class _HomeState extends State<Home> {
   // This widget is the root of your application.
+  int _currentIndex = 0;
+
+  final tabs = [
+    dashboardPage(),
+    transactionPage(),
+    profilePage(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,16 +47,11 @@ class _HomeState extends State<Home> {
             )
         ],
       ),
-        body: Container(
-          padding: EdgeInsets.fromLTRB(152.00, 10.00, 142.00, 10.00),
-          child: Text(
-            'Daftar Kartu',
-            style: TextStyle(fontSize: 20.00),
-          ),
-        ),
+        body: tabs[_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
           backgroundColor: Colors.grey[900],
-          currentIndex: 0, // this will be set when a new tab is tapped
+          currentIndex: _currentIndex, // this will be set when a new tab is tapped
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home,),
@@ -59,6 +66,11 @@ class _HomeState extends State<Home> {
               title: Text('Profile'),
             ),
           ],
+          onTap: (index){
+            setState(() {
+              _currentIndex = index;
+            });
+          },
           unselectedItemColor: Colors.white,
         ),
       floatingActionButton: FloatingActionButton(
@@ -161,3 +173,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
+//Text(
+//'Daftar Kartu',
+//style: TextStyle(fontSize: 20.00),
+//),
