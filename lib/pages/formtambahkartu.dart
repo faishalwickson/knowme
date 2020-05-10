@@ -122,7 +122,7 @@ class _TambahKartuState extends State<TambahKartu> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 25.0),
+              padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 120.0),
               child: RaisedButton(
                 child: Text("Tambah Kartu"),
                 color: Colors.green,
