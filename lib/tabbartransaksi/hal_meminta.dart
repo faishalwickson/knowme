@@ -16,6 +16,28 @@ class _MemintaState extends State<Meminta> {
     Person(nama:'Data Kelas R06', username: '@ujhez, @japas ceria, ...',foto: 'helena-lopes-PGnqT0rXWLs-unsplash.jpg'),
   ];
 
+  void kirimdata(){
+    AlertDialog alertDialog = AlertDialog(
+      content: Container(
+        height: 250.0,
+        child: Column(
+          children: <Widget>[
+            Image.asset("assets/images/undraw_message_sent_1030.png", width: 280, fit: BoxFit.fitWidth, alignment: Alignment.topCenter,),
+            Text("Permintaanmu sudah terkirim!"),
+            Padding(
+              padding: const EdgeInsets.only(top:8.0),
+              child: RaisedButton(
+                child: Text("Kembali"),
+                onPressed: ()=>Navigator.pop(context),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+    showDialog(context: context, child: alertDialog);
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -41,14 +63,18 @@ class _MemintaState extends State<Meminta> {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(left:50.0, top: 20),
-              child: Text("Centang data yang akan kamu minta", style: TextStyle(fontSize: 15),),
+              padding: const EdgeInsets.only(top: 25, left: 10),
+              child: Text("Pilih data yang mau kamu minta", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left:10),
+              child: Text("Data ini adalah data milik orang yang dituju", style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal),),
             ),
             SizedBox(height: 20),
             Container(
               padding: EdgeInsets.symmetric(vertical: 10),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
+                borderRadius: BorderRadius.circular(20),
                 color: Colors.white,
                 boxShadow: [
                   BoxShadow(
@@ -132,90 +158,114 @@ class _MemintaState extends State<Meminta> {
               )
             ),
             SizedBox(height: 20),
-            Container(
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    offset: Offset(0, 5),
-                    blurRadius: 25,
-                    color: Colors.black12,
-                  ),
-                ],
+            Padding(
+              padding: const EdgeInsets.only(top: 20.0),
+              child: Container(
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      offset: Offset(0, 5),
+                      blurRadius: 25,
+                      color: Colors.black12,
+                    ),
+                  ],
+                ),
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(right: 190),
+                      child: Text("Daftar Kartu", style: TextStyle(fontSize: 25.0,fontWeight: FontWeight.bold)),
+                    ),
+                     Padding(
+                       padding: const EdgeInsets.only(left: 10.0),
+                       child: Row(
+                        children: <Widget>[
+                           Checkbox(
+                             value: checkBoxValue5,
+                             onChanged: (bool value){
+                             setState(() {
+                             checkBoxValue5 = value;
+                             });
+                            },
+                          ),
+                        Text("Kartu Tanda Penduduk", style: TextStyle(fontSize: 15),),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                       padding: const EdgeInsets.only(left: 10.0),
+                       child: Row(
+                        children: <Widget>[
+                           Checkbox(
+                             value: checkBoxValue6,
+                             onChanged: (bool value){
+                             setState(() {
+                             checkBoxValue6 = value;
+                             });
+                            },
+                          ),
+                        Text("Kartu Tanda Mahasiswa", style: TextStyle(fontSize: 15),),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                       padding: const EdgeInsets.only(left: 10.0),
+                       child: Row(
+                        children: <Widget>[
+                           Checkbox(
+                             value: checkBoxValue7,
+                             onChanged: (bool value){
+                             setState(() {
+                             checkBoxValue7 = value;
+                             });
+                            },
+                          ),
+                        Text("Surat Izin Mengemudi", style: TextStyle(fontSize: 15),),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                       padding: const EdgeInsets.only(left: 10.0),
+                       child: Row(
+                        children: <Widget>[
+                           Checkbox(
+                             value: checkBoxValue8,
+                             onChanged: (bool value){
+                             setState(() {
+                             checkBoxValue8 = value;
+                             });
+                            },
+                          ),
+                        Text("Kartu Keluarga", style: TextStyle(fontSize: 15),),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              child: Column(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(right: 190),
-                    child: Text("Daftar Kartu", style: TextStyle(fontSize: 25.0,fontWeight: FontWeight.bold)),
-                  ),
-                   Padding(
-                     padding: const EdgeInsets.only(left: 10.0),
-                     child: Row(
-                      children: <Widget>[
-                         Checkbox(
-                           value: checkBoxValue5,
-                           onChanged: (bool value){
-                           setState(() {
-                           checkBoxValue5 = value;
-                           });
-                          },
-                        ),
-                      Text("Kartu Tanda Penduduk", style: TextStyle(fontSize: 15),),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                     padding: const EdgeInsets.only(left: 10.0),
-                     child: Row(
-                      children: <Widget>[
-                         Checkbox(
-                           value: checkBoxValue6,
-                           onChanged: (bool value){
-                           setState(() {
-                           checkBoxValue6 = value;
-                           });
-                          },
-                        ),
-                      Text("Kartu Tanda Mahasiswa", style: TextStyle(fontSize: 15),),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                     padding: const EdgeInsets.only(left: 10.0),
-                     child: Row(
-                      children: <Widget>[
-                         Checkbox(
-                           value: checkBoxValue7,
-                           onChanged: (bool value){
-                           setState(() {
-                           checkBoxValue7 = value;
-                           });
-                          },
-                        ),
-                      Text("Surat Izin Mengemudi", style: TextStyle(fontSize: 15),),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                     padding: const EdgeInsets.only(left: 10.0),
-                     child: Row(
-                      children: <Widget>[
-                         Checkbox(
-                           value: checkBoxValue8,
-                           onChanged: (bool value){
-                           setState(() {
-                           checkBoxValue8 = value;
-                           });
-                          },
-                        ),
-                      Text("Kartu Keluarga", style: TextStyle(fontSize: 15),),
-                      ],
-                    ),
-                  ),
-                ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 10, top:20),
+              child: Text("Tambahkan keterangan", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left:10),
+              child: Text("Sampaikan kenapa data mereka penting buatmu", style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal),),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10.0),
+              child: TextField(
+                maxLines: 3,
+                decoration: InputDecoration(
+                    hintText: "Contoh: Saya meminta data anda untuk administrasi pekerjaan",
+                    labelText: "Keterangan",
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0)
+                    )
+                ),
               ),
             ),
           ],
@@ -223,7 +273,7 @@ class _MemintaState extends State<Meminta> {
       ),
         floatingActionButton: FloatingActionButton(
           onPressed: (){
-            Navigator.pushNamed(context,'/formtambahkartu');
+            kirimdata();
           },
           child: Icon(Icons.send),
           backgroundColor: Colors.grey[900],

@@ -13,14 +13,17 @@ class _TambahKartuState extends State<TambahKartu> {
   void kirimdata(){
     AlertDialog alertDialog = AlertDialog(
       content: Container(
-        height: 200.0,
+        height: 250.0,
         child: Column(
           children: <Widget>[
-            Icon(Icons.send, size: 60.0),
+            Image.asset("assets/images/undraw_data_processing_yrrv.png", width: 250, fit: BoxFit.fitWidth, alignment: Alignment.topCenter,),
             Text("Kartu akan ditambahkan"),
-            RaisedButton(
-              child: Text("Setuju"),
-              onPressed: ()=>Navigator.pop(context),
+            Padding(
+              padding: const EdgeInsets.only(top:5.0),
+              child: RaisedButton(
+                child: Text("Setuju"),
+                onPressed: ()=>Navigator.pop(context),
+              ),
             )
           ],
         ),
