@@ -30,6 +30,21 @@ void pilihAgama(String value){
   Widget build(BuildContext context) {
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.grey[900],
+        title: Text('Transksi'),
+        centerTitle: true,
+        elevation: 0,
+        actions: <Widget>[
+          FlatButton.icon(
+            onPressed: () {
+              Navigator.pushNamed(context, '/Riwayat');
+            },
+            icon: Icon(Icons.history, color: Colors.white,),
+            label: Text(''),
+          )
+        ],
+      ),
       body: Column(
         children: <Widget>[
           Text("Cari Username", style: TextStyle(fontSize: 25.0),),
