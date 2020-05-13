@@ -19,7 +19,6 @@ class _HomeState extends State<Home> {
 } */
 
 class _HomeState extends State<Home> {
-  // This widget is the root of your application.
   int _currentIndex = 0;
 
   final tabs = [
@@ -32,38 +31,24 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
 
-      appBar: AppBar(
-        backgroundColor: Colors.grey[900],
-        title: Text('KnowMe'),
-        centerTitle: true,
-        elevation: 0,
-        actions: <Widget>[
-          FlatButton.icon(
-            onPressed: () {
-              Navigator.pushNamed(context, '/Riwayat');
-            },
-            icon: Icon(Icons.history, color: Colors.white,),
-            label: Text(''),
-            )
-        ],
-      ),
+
         body: tabs[_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           backgroundColor: Colors.grey[900],
-          currentIndex: _currentIndex, // this will be set when a new tab is tapped
+          currentIndex: _currentIndex,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home,),
-              title: Text('Home'),
+              title: Text('Dasbor'),
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.import_export),
-              title: Text('Transactions'),
+              title: Text('Transaksi'),
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.person),
-              title: Text('Profile'),
+              title: Text('Profil'),
             ),
           ],
           onTap: (index){
@@ -73,13 +58,6 @@ class _HomeState extends State<Home> {
           },
           unselectedItemColor: Colors.white,
         ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          Navigator.pushNamed(context,'/formtambahkartu');
-        },
-        child: Icon(Icons.add),
-        backgroundColor: Colors.grey[900],
-      )
     );
   }
 }
@@ -89,7 +67,3 @@ class _HomeState extends State<Home> {
 
 
 
-//Text(
-//'Daftar Kartu',
-//style: TextStyle(fontSize: 20.00),
-//),

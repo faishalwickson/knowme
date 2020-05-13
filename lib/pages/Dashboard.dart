@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class dashboardPage extends StatefulWidget {
@@ -10,9 +11,32 @@ class dashboardState extends State<dashboardPage>{
   Widget build(BuildContext context) {
 
     return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.grey[900],
+          title: Text('KnowMe'),
+          centerTitle: true,
+          elevation: 0,
+          actions: <Widget>[
+            FlatButton.icon(
+              onPressed: () {
+                Navigator.pushNamed(context, '/Riwayat');
+              },
+              icon: Icon(Icons.history, color: Colors.white,),
+              label: Text(''),
+            )
+          ],
+        ),
       body: ListView(
         scrollDirection: Axis.vertical,
         children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
+            child: Text(
+              'Daftar Kartu',
+              style: TextStyle(fontSize: 20.00, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.all(20.00),
             child: Container(
@@ -75,6 +99,13 @@ class dashboardState extends State<dashboardPage>{
           ),
         ],
       ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: (){
+            Navigator.pushNamed(context,'/formtambahkartu');
+          },
+          child: Icon(Icons.add),
+          backgroundColor: Colors.grey[900],
+        )
     );
   }
 
