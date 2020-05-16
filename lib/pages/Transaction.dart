@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:knowme/services/person.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:barcode_scan/barcode_scan.dart';
+import 'package:flutter/services.dart';
 
 class transactionPage extends StatefulWidget {
   @override
@@ -18,6 +21,15 @@ class transactionState extends State<transactionPage>{
   ];
   String _daftar="Udin Sanchez";
 */
+  String code="";
+  String getcode="";
+  String barcode = "";
+  Future scanbarcode()async{
+    getcode= await FlutterBarcodeScanner.scanBarcode("#009922", "BATAL", true);
+    setState(() {
+      code=getcode;
+    });
+  }
   List<String> agama=["Ujang Sanchez","Ujang Uyey","Siti Cemerlang"];
   String _agama="Ujang Sanchez";
 
@@ -75,6 +87,46 @@ void pilihAgama(String value){
                 ),
               ),
             ],
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 25.0),
+            child: Text("Atau gunakan Scan QR", style: TextStyle(fontSize: 25.0),),
+          ),
+          Text("Kamu bisa melakukan scanning QR untuk bertransaksi data", style: TextStyle(fontSize: 15.0, color: Colors.black45),),
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+        child: RaisedButton(
+          child: Icon(Icons.settings_overscan),
+          onPressed: () {
+            scanbarcode();
+          },
+        ),
+      ),
+          Text(code),
+          RaisedButton(
+            child: Text('Scan'),
+            onPressed: () async {
+              try {
+                String barcode = await BarcodeScanner.scan();
+                setState(() {
+                  this.barcode = barcode;
+                });
+              } on PlatformException catch (error) {
+                if (error.code == BarcodeScanner.CameraAccessDenied) {
+                  setState(() {
+                    this.barcode = 'Izin kamera tidak diizinkan oleh si pengguna';
+                  });
+                } else {
+                  setState(() {
+                    this.barcode = 'Error: $error';
+                  });
+                }
+              }
+            },
+          ),
+          Text(
+            'Result: $barcode',
+            textAlign: TextAlign.center,
           ),
         ],
       ),

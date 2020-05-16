@@ -1,75 +1,327 @@
 import 'package:flutter/material.dart';
 import 'package:knowme/services/person.dart';
-/*
-class Mengirim extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return new Container(
-      child: new Center(
-        child: new Column(
-          children: <Widget>[
-            new Padding(padding: new EdgeInsets.all(20.0),),
-            new Text("MENGIRIM", style: new TextStyle(fontSize: 30.0),),
-            new Padding(padding: new EdgeInsets.all(20.0),),
-            new Icon(Icons.radio,size:90,)
-          ],
-        ),
-      ),
-    );
-  }
-}
- */
 class Mengirim extends StatefulWidget {
   @override
   _MengirimState createState() => _MengirimState();
 }
 
 class _MengirimState extends State<Mengirim> {
+
   void setupPerson(){
     Person instance = Person(nama: 'Kesbor', username: '@kesborian', foto: 'jakob-owens-bQ0TogIULCM-unsplash.jpg');
   }
   List<Person> daftar = [
-    Person(nama:'Udin Sanchez', username: '@ujhez', foto: 'cobro-JDJIDtZNJsM-unsplash.jpg'),
+    Person(nama:'Ujang Sanchez', username: '@ujhez', foto: 'cobro-JDJIDtZNJsM-unsplash.jpg'),
     Person(nama:'Asep Uyey', username: '@japasceria', foto: 'fred-moon-vSI2KnI4Abc-unsplash.jpg'),
     Person(nama:'Data Kelas R06', username: '@ujhez, @japas ceria, ...',foto: 'helena-lopes-PGnqT0rXWLs-unsplash.jpg'),
-    Person(nama:'Siti Cemerlang', username: '@stglowing', foto: 'photo-1574297500578-afae55026ff3.webp'),
   ];
+
+  void kirimdata(){
+    AlertDialog alertDialog = AlertDialog(
+      content: Container(
+        height: 300.0,
+        child: Column(
+          children: <Widget>[
+            Image.asset("assets/images/undraw_deliveries_131a.png", width: 380, fit: BoxFit.fitWidth, alignment: Alignment.topCenter,),
+            Text("Datamu sudah terkirim!"),
+            Padding(
+              padding: const EdgeInsets.only(top:15.0),
+              child: RaisedButton(
+                child: Text("Kembali"),
+                onPressed: ()=>Navigator.pop(context),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+    showDialog(context: context, child: alertDialog);
+  }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: ListView.builder(
-            itemCount: daftar.length,
-            itemBuilder: (context, index){
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 3.0, horizontal: 7.0),
-                child: Container(
+        body: Container(
+          padding: EdgeInsets.all(20.0),
+          child: ListView(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: Text("Pilih datamu yang akan dikirim", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left:10),
+                child: Text("Data yang tercantum adalah data yang\nsudah kamu tambahkan", style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal),),
+              ),
+              SizedBox(height: 20),
+              Container(
+                  padding: EdgeInsets.symmetric(vertical: 10),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.white,
                     boxShadow: [
                       BoxShadow(
-                        offset: Offset(0, 5),
-                        blurRadius: 5,
+                        offset: Offset(5, 5),
+                        blurRadius: 15,
                         color: Colors.black12,
                       ),
                     ],
                   ),
-                  child: Card(
-                    child: ListTile(
-                        onTap: () {
-                          print(daftar[index].nama);
-                        },
-                        title: Text(daftar[index].nama, style: TextStyle(fontSize: 20.0) ,),
-                        subtitle: Text(daftar[index].username),
-
-                        leading: CircleAvatar(
-                          backgroundImage: AssetImage('assets/images/${daftar[index].foto}'),
-                        )
-                    ),
+                  child: Column(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(right: 170),
+                        child: Text("Data Diri Umum", style: TextStyle(fontSize: 25.0,fontWeight: FontWeight.bold)),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20.0),
+                        child: Row(
+                          children: <Widget>[
+                            Checkbox(
+                              value: checkBoxValue11,
+                              onChanged: (bool value){
+                                setState(() {
+                                  checkBoxValue11 = value;
+                                });
+                              },
+                            ),
+                            Text("Email", style: TextStyle(fontSize: 15),),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left:20.0),
+                        child: Row(
+                          children: <Widget>[
+                            Checkbox(
+                              value: checkBoxValue12,
+                              onChanged: (bool value){
+                                setState(() {
+                                  checkBoxValue12 = value;
+                                });
+                              },
+                            ),
+                            Text("ID Line", style: TextStyle(fontSize: 15),),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20.0),
+                        child: Row(
+                          children: <Widget>[
+                            Checkbox(
+                              value: checkBoxValue13,
+                              onChanged: (bool value){
+                                setState(() {
+                                  checkBoxValue13 = value;
+                                });
+                              },
+                            ),
+                            Text("No. Whatsapp", style: TextStyle(fontSize: 15),),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20.0),
+                        child: Row(
+                          children: <Widget>[
+                            Checkbox(
+                              value: checkBoxValue14,
+                              onChanged: (bool value){
+                                setState(() {
+                                  checkBoxValue14 = value;
+                                });
+                              },
+                            ),
+                            Text("Username Instagram", style: TextStyle(fontSize: 15),),
+                          ],
+                        ),
+                      ),
+                    ],
+                  )
+              ),
+              SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.only(top: 20.0),
+                child: Container(
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        offset: Offset(0, 5),
+                        blurRadius: 25,
+                        color: Colors.black12,
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(right: 190),
+                        child: Text("Daftar Kartu", style: TextStyle(fontSize: 25.0,fontWeight: FontWeight.bold)),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0),
+                        child: Row(
+                          children: <Widget>[
+                            Checkbox(
+                              value: checkBoxValue15,
+                              onChanged: (bool value){
+                                setState(() {
+                                  checkBoxValue15 = value;
+                                });
+                              },
+                            ),
+                            Text("Kartu Tanda Penduduk", style: TextStyle(fontSize: 15),),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0),
+                        child: Row(
+                          children: <Widget>[
+                            Checkbox(
+                              value: checkBoxValue16,
+                              onChanged: (bool value){
+                                setState(() {
+                                  checkBoxValue16 = value;
+                                });
+                              },
+                            ),
+                            Text("Kartu Tanda Mahasiswa", style: TextStyle(fontSize: 15),),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0),
+                        child: Row(
+                          children: <Widget>[
+                            Checkbox(
+                              value: checkBoxValue17,
+                              onChanged: (bool value){
+                                setState(() {
+                                  checkBoxValue17 = value;
+                                });
+                              },
+                            ),
+                            Text("Surat Izin Mengemudi", style: TextStyle(fontSize: 15),),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0),
+                        child: Row(
+                          children: <Widget>[
+                            Checkbox(
+                              value: checkBoxValue18,
+                              onChanged: (bool value){
+                                setState(() {
+                                  checkBoxValue18 = value;
+                                });
+                              },
+                            ),
+                            Text("Kartu Keluarga", style: TextStyle(fontSize: 15),),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              );
-            }
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top:20),
+                child: Text("Pilih Hak Akses bagi penerima", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top:5),
+                child: Text("Hak akses berguna untuk keamanan datamu", style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal),),
+              ),
+            SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.only(top: 2.0),
+                child: Container(
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        offset: Offset(10, 5),
+                        blurRadius: 25,
+                        color: Colors.black12,
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(right: 220),
+                        child: Text("Hak Akses", style: TextStyle(fontSize: 25.0,fontWeight: FontWeight.bold)),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0),
+                        child: Row(
+                          children: <Widget>[
+                            Checkbox(
+                              value: checkBoxValue19,
+                              onChanged: (bool value){
+                                setState(() {
+                                  checkBoxValue19 = value;
+                                });
+                              },
+                            ),
+                            Text("Mengunduh", style: TextStyle(fontSize: 15),),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0),
+                        child: Row(
+                          children: <Widget>[
+                            Checkbox(
+                              value: checkBoxValue20,
+                              onChanged: (bool value){
+                                setState(() {
+                                  checkBoxValue20 = value;
+                                });
+                              },
+                            ),
+                            Text("Menyebarkan", style: TextStyle(fontSize: 15),),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0),
+                        child: Row(
+                          children: <Widget>[
+                            Checkbox(
+                              value: checkBoxValue21,
+                              onChanged: (bool value){
+                                setState(() {
+                                  checkBoxValue21 = value;
+                                });
+                              },
+                            ),
+                            Text("Akses Permanen", style: TextStyle(fontSize: 15),),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: (){
+            kirimdata();
+          },
+          child: Icon(Icons.send),
+          backgroundColor: Colors.grey[900],
         )
     );
   }

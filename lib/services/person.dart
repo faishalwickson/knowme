@@ -35,3 +35,15 @@ bool checkBoxValue5 = false;
 bool checkBoxValue6 = false;
 bool checkBoxValue7 = false;
 bool checkBoxValue8 = false;
+bool checkBoxValue11 = false;
+bool checkBoxValue12 = false;
+bool checkBoxValue13 = false;
+bool checkBoxValue14 = false;
+bool checkBoxValue15 = false;
+bool checkBoxValue16 = false;
+bool checkBoxValue17 = false;
+bool checkBoxValue18 = false;
+bool checkBoxValue19 = false;
+bool checkBoxValue20 = false;
+bool checkBoxValue21 = false;
+
