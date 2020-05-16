@@ -43,9 +43,9 @@ Aplikasi ini menyimpan kumpulan identitas kependudukan yang dimasukkan oleh peng
 # User Profile
 
 ## a. Masyarakat
-### 1. Usia: 20-40 tahun.
-### 2. Pekerjaan: mobilitas tinggi, membutuhkan banyak akses identitas, bisa juga bekerja di instansi pemerintah bagian lapang.
-### 3. Melek Teknologi dan terbiasa dengan penggunaan aplikasi.
+1. Usia: 20-40 tahun.
+2. Pekerjaan: mobilitas tinggi, membutuhkan banyak akses identitas, bisa juga bekerja di instansi pemerintah bagian lapang.
+3. Melek Teknologi dan terbiasa dengan penggunaan aplikasi.
 
 
 
