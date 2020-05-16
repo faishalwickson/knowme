@@ -47,5 +47,34 @@ Aplikasi ini menyimpan kumpulan identitas kependudukan yang dimasukkan oleh peng
 2. Pekerjaan: mobilitas tinggi, membutuhkan banyak akses identitas, bisa juga bekerja di instansi pemerintah bagian lapang.
 3. Melek Teknologi dan terbiasa dengan penggunaan aplikasi.
 
+# User Story
+
+# Use Case Diagram
+
+![pijan1](https://user-images.githubusercontent.com/60166820/82122404-b8026800-97bd-11ea-8419-3826b8f1f75c.png)
+
+# Use Case Description
+
+## Proses Meminta Data Kartu
+
+![image](https://user-images.githubusercontent.com/60166820/82122447-f009ab00-97bd-11ea-913c-76a05caac1b8.png)
+
+# Activity Diagram
+
+## Activity Diagram : Proses Meminta Data Kartu
+
+![pijan2](https://user-images.githubusercontent.com/60166820/82122518-63abb800-97be-11ea-87d2-464f6cb2c6e9.png)
+
+# Gantt Chart
+
+## Team Gantt
+
+![pijan4](https://user-images.githubusercontent.com/60166820/82122648-10863500-97bf-11ea-978e-df1e1c852320.png)
+
+# ERD 
+
+![pijan3](https://user-images.githubusercontent.com/60166820/82122620-efbddf80-97be-11ea-92c6-d0a126843d7c.jpg)
+
+# Hasil Implementasi
 
 
