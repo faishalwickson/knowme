@@ -1,16 +1,51 @@
-# knowme
+# Knowme App
 
 A new Flutter project.
 
-## Getting Started
+# Nama Kelompok dan Anggota
 
-This project is a starting point for a Flutter application.
+1.	Muhammad Hafizhan			(G64180100)
+2.	Muhammad Faishal Wicaksono		(G64180026)
+3.	Zuhdi Mukarram Bakhri			(G64180060)
 
-A few resources to get you started if this is your first Flutter project:
+# Latar Belakang
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Setiap individu dalam masyarakat pasti memiliki beberapa kartu identitas yang diperlukannya dalam kehidupan sehari-hari. Namun, seringkali banyaknya jumlah kartu identitas tersebut membawa kesulitan tersendiri kepada pemegang kartu. Ditambah lagi, bentuk fisik dari kartu-kartu tersebut menyebabkannya sulit untuk dibawa kemana-mana serta mudah tercecer atau hilang. Oleh karena itu, diperlukan sebuah sistem terpadu yang dapat menghubungkan dan memudahkan akses kepada identitas-identitas tersebut.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Tujuan
+
+-	Melahirkan basis data kependudukan terpadu.
+-	Memudahkan masyarakat dalam menyimpan identitas kependudukan.
+
+# Ruang Lingkup
+
+## 1.	Hardware
+-	Processor
+-	Memory
+-	Graphic Card
+-	Storage
+
+## 2.	Software
+-	Framework/Stack
+-	Database
+-	Server
+-	Text Editor/IDE
+
+## 3.	Lainnya
+-	Development Time
+-	API
+-	etc
+
+# Deskripsi Singkat
+
+Aplikasi ini menyimpan kumpulan identitas kependudukan yang dimasukkan oleh pengguna, seperti KTP, SIM, KTM, STNK, dll yang dapat diakses oleh orang lain melalui scan QR code atau melalui metode lainnya. Hal ini memudahkan akses kepada identitas-identitas tersebut tanpa pengguna perlu membawa kartu-kartu identitas yang dimilikinya kemana-mana.
+
+# User Profile
+
+## a. Masyarakat
+### 1. Usia: 20-40 tahun.
+### 2. Pekerjaan: mobilitas tinggi, membutuhkan banyak akses identitas, bisa juga bekerja di instansi pemerintah bagian lapang.
+### 3. Melek Teknologi dan terbiasa dengan penggunaan aplikasi.
+
+
+
