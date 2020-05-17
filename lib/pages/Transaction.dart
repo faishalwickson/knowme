@@ -3,6 +3,7 @@ import 'package:knowme/services/person.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/scheduler.dart';
 
 class transactionPage extends StatefulWidget {
   @override
@@ -30,6 +31,34 @@ class transactionState extends State<transactionPage>{
       code=getcode;
     });
   }
+  String result = "Heyho";
+Future _scanQR() async {
+  try {
+    String qrResult = await BarcodeScanner.scan();
+    setState(() {
+      result = qrResult;
+    });
+  } on PlatformException catch (ex) {
+    if (ex.code == BarcodeScanner.CameraAccessDenied) {
+      setState(() {
+        result = "Camera permission denied";
+      });
+    } else {
+      setState(() {
+        result = "Unknown Error $ex";
+      });
+    }
+  } on FormatException {
+    setState(() {
+      result = "kamu menekan tombol kembali sebelum melakukan scanning";
+    });
+  } catch (ex) {
+    setState(() {
+      result = "unknown error $ex";
+    });
+  }
+}
+
   List<String> agama=["Ujang Sanchez","Ujang Uyey","Siti Cemerlang"];
   String _agama="Ujang Sanchez";
 
@@ -44,7 +73,7 @@ void pilihAgama(String value){
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.grey[900],
-        title: Text('Transksi'),
+        title: Text('Transaksi'),
         centerTitle: true,
         elevation: 0,
         actions: <Widget>[
@@ -59,50 +88,57 @@ void pilihAgama(String value){
       ),
       body: Column(
         children: <Widget>[
-          Text("Cari Username", style: TextStyle(fontSize: 25.0),),
-          Text("Cari orang berdasarkan username mereka!", style: TextStyle(fontSize: 15.0, color: Colors.black45),),
+          Padding(
+            padding: const EdgeInsets.only(top: 15.0),
+            child: Image.asset("assets/images/undraw_searching_p5ux.png", width: 280, fit: BoxFit.fitWidth, alignment: Alignment.topCenter,),
+          ),
+          Text("Cari Username", style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),),
+          Text("Cari orang berdasarkan username mereka", style: TextStyle(fontSize: 15.0, color: Colors.black45),),
           Padding(padding: EdgeInsets.only(top: 10.0),),
-          Row(
-            children: <Widget>[
-              Text("Masukkan Username    ", style: TextStyle(fontSize: 15.0, color: Colors.blue),),
-              DropdownButton(
-                onChanged: (String value){
-                  pilihAgama(value);
-                },
-                value: _agama,
-                items: agama.map((String value){
-                  return DropdownMenuItem(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                child: RaisedButton(
-                  child: Icon(Icons.search),
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/Transaksi_Person');
-                  },
-                ),
-              ),
-            ],
+          Center(
+              //padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(left:90.0,top:10),
+                    child: DropdownButton(
+                      onChanged: (String value){
+                        pilihAgama(value);
+                      },
+                      value: _agama,
+                      items: agama.map((String value){
+                        return DropdownMenuItem(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0),
+                    child: RaisedButton(
+                      color: Colors.blue,
+                      child: Row(
+                        children: <Widget>[
+                          Icon(Icons.search, color: Colors.white,),
+                          Text("Cari", style: TextStyle(color: Colors.white),),
+                        ],
+                      ),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/Transaksi_Person');
+                      },
+                    ),
+                  ),
+                ],
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 25.0),
-            child: Text("Atau gunakan Scan QR", style: TextStyle(fontSize: 25.0),),
+            child: Text("Atau gunakan Scan QR", style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),),
           ),
-          Text("Kamu bisa melakukan scanning QR untuk bertransaksi data", style: TextStyle(fontSize: 15.0, color: Colors.black45),),
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-        child: RaisedButton(
-          child: Icon(Icons.settings_overscan),
-          onPressed: () {
-            scanbarcode();
-          },
-        ),
-      ),
-          Text(code),
+          Text("Scan untuk bertransaksi data", style: TextStyle(fontSize: 15.0, color: Colors.black45),),
+          Text(code), /*
           RaisedButton(
             child: Text('Scan'),
             onPressed: () async {
@@ -123,13 +159,31 @@ void pilihAgama(String value){
                 }
               }
             },
-          ),
-          Text(
-            'Result: $barcode',
-            textAlign: TextAlign.center,
+          ), */
+          Column(
+            children: <Widget>[
+              Text(
+                'Hasil:',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold),
+              ),
+              Text(
+                result,
+                textAlign: TextAlign.center,
+              ),
+            ],
           ),
         ],
       ),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom:10.0),
+        child: FloatingActionButton.extended(
+          icon: Icon(Icons.camera_alt),
+          label: Text("Scan"),
+          onPressed: _scanQR,
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 
