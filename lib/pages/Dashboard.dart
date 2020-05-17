@@ -92,42 +92,4 @@ class dashboardState extends State<dashboardPage>{
         )
     );
   }
-
 }
-
-
-/*Column(
-             children: <Widget>[
-               Container(
-                   width: 334,
-                   height: 143,
-                   child: ClipRRect(
-                     borderRadius: new BorderRadius.only(topLeft: Radius.circular(24.00), topRight: Radius.circular(24.0)),
-                     child: Image(
-                       fit: BoxFit.fitWidth,
-                       alignment: Alignment.topCenter,
-                       image: AssetImage('assets/images/KTP.jpg'),
-                     ),
-                   )
-               ),
-               Padding(
-                 padding: const EdgeInsets.fromLTRB(13.0, 8.0, 131.0, 8.0),
-                 child: Column(
-                   mainAxisAlignment: MainAxisAlignment.start,
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: <Widget>[
-                     Text(
-                       'Kartu Tanda Penduduk',
-                       textAlign: TextAlign.left,
-                       style: TextStyle(fontSize: 15),
-                     ),
-                     Text(
-                       'Ditambahkan Pada 16/05/2020',
-                       textAlign: TextAlign.left,
-                       style: TextStyle(fontSize: 12),
-                     ),
-                   ],
-                 ),
-               ),
-             ],
-           ),*/

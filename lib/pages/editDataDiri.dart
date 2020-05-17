@@ -6,7 +6,7 @@ class editDataDiriPage extends StatefulWidget {
   editDataDiriState createState() => editDataDiriState();
 }
 
-class editDataDiriState extends State<editDataDiriPage> {
+class editDataDiriState extends State<editDataDiriPage> with SingleTickerProviderStateMixin{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
