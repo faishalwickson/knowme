@@ -1,20 +1,63 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:knowme/pages/editKartu.dart';
+import 'package:http/http.dart' as http;
+import 'package:toast/toast.dart';
 
 import 'Dashboard.dart';
 
+
 class detailKartuPage extends StatefulWidget {
+  List list;
+  int index;
+  detailKartuPage({this.index,this.list});
   @override
   detailKartuState createState() => detailKartuState();
 }
 
 class detailKartuState extends State<detailKartuPage> with SingleTickerProviderStateMixin{
+
+  void deleteData(){
+    var url="http://10.0.2.2/knowme/deletedata.php";
+    http.post(url, body: {
+      'id': widget.list[widget.index]['id']
+    });
+  }
+
+  void confirm (){
+    AlertDialog alertDialog = new AlertDialog(
+      content: Text('Anda Yakin Ingin Menghapus ${widget.list[widget.index]['nama_kartu']}?'),
+      actions: <Widget>[
+        RaisedButton(
+          child: Text('Ya'),
+          color: Colors.red,
+          onPressed: (){
+            deleteData();
+            Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (BuildContext context)=>dashboardPage(),
+                )
+            );
+            Toast.show("Berhasil Menghapus Kartu", context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);
+          }
+        ),
+        RaisedButton(
+          child: Text('Tidak'),
+          color: Colors.blue,
+          onPressed: ()=> Navigator.pop(context),
+        ),
+      ],
+    );
+    
+    showDialog(context: context, child: alertDialog);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.grey[900],
-        title: Text('Detail Kartu'),
+        title: Text('${widget.list[widget.index]['nama_kartu']}'),
         centerTitle: true,
         elevation: 0,
       ),
@@ -32,18 +75,11 @@ class detailKartuState extends State<detailKartuPage> with SingleTickerProviderS
               ClipRRect(
                 borderRadius: new BorderRadius.only(topLeft: Radius.circular(20.00), topRight: Radius.circular(20.0)),
                 child: Image(
-                  height: 180,
+                  height: 175,
                   width: 400,
                   fit: BoxFit.fitWidth,
                   alignment: Alignment.topCenter,
-                  image: AssetImage('assets/images/KTP.jpg'),
-                ),
-              ),
-              ListTile(
-                contentPadding: EdgeInsets.fromLTRB(10, 7, 10, 7),
-                title: Text(
-                  'Kartu Tanda Penduduk',
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                  image: AssetImage('assets/images/${widget.list[widget.index]['scan_kartu']}'),
                 ),
               ),
              Column(
@@ -51,32 +87,31 @@ class detailKartuState extends State<detailKartuPage> with SingleTickerProviderS
                crossAxisAlignment: CrossAxisAlignment.start,
                children: <Widget>[
                  Padding(
-                   padding: EdgeInsets.fromLTRB(10.0, 7.0, 5.0, 10.0),
-                   child: Text('Nama : Kesbor Munif Mardial', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),),
+                   padding: EdgeInsets.fromLTRB(15, 18, 10, 10),
+                   child: Text(
+                     '${widget.list[widget.index]['nama_kartu']}',
+                     style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                   ),
+                 ),
+                 Padding(
+                   padding: EdgeInsets.fromLTRB(10.0, 0, 5.0, 10.0),
+                   child: Text('Ditambahkan pada ${widget.list[widget.index]['Ditambahkanpada']}', style: TextStyle(fontSize: 11, color: Colors.grey),),
                  ),
                  Padding(
                    padding: EdgeInsets.fromLTRB(10.0, 7.0, 5.0, 10.0),
-                   child: Text('NIK : 66653688847777', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),),
+                   child: Text('Informasi 1 : ${widget.list[widget.index]['informasi1']}', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),),
                  ),
                  Padding(
                    padding: EdgeInsets.fromLTRB(10.0, 7.0, 5.0, 10.0),
-                   child: Text('Tempat, Tanggal Lahir : Ciawi, 29 Mar 1998', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),),
+                   child: Text('Informasi 2 : ${widget.list[widget.index]['informasi2']}', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),),
                  ),
                  Padding(
                    padding: EdgeInsets.fromLTRB(10.0, 7.0, 5.0, 10.0),
-                   child: Text('Alamat : Dramaga Cinta, blok R', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),),
+                   child: Text('Informasi 3 : ${widget.list[widget.index]['informasi3']}', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),),
                  ),
                  Padding(
                    padding: EdgeInsets.fromLTRB(10.0, 7.0, 5.0, 10.0),
-                   child: Text('Pekerjaan : Wiraswasta', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),),
-                 ),
-                 Padding(
-                   padding: EdgeInsets.fromLTRB(10.0, 7.0, 5.0, 10.0),
-                   child: Text('Status : Menikah', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),),
-                 ),
-                 Padding(
-                   padding: EdgeInsets.fromLTRB(10.0, 7.0, 5.0, 10.0),
-                   child: Text('Golongan Darah : O', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),),
+                   child: Text('Masa Berlaku : ${widget.list[widget.index]['masa_berlaku']}', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),),
                  ),
                  Padding(
                    padding: EdgeInsets.fromLTRB(10.0, 7.0, 5.0, 10.0),
@@ -92,6 +127,7 @@ class detailKartuState extends State<detailKartuPage> with SingleTickerProviderS
                            disabledTextColor: Colors.white,
                            padding: EdgeInsets.all(8.0),
                            splashColor: Colors.blueAccent,
+                           onPressed: ()=>confirm(),
                            child: Text(
                              "Hapus Kartu",
                              style: TextStyle(fontSize: 20.0),
@@ -107,6 +143,11 @@ class detailKartuState extends State<detailKartuPage> with SingleTickerProviderS
                            disabledTextColor: Colors.white,
                            padding: EdgeInsets.all(8.0),
                            splashColor: Colors.blueAccent,
+                           onPressed: ()=>Navigator.of(context).push(
+                               MaterialPageRoute(
+                                 builder: (BuildContext context)=>editKartuPage(list: widget.list, index: widget.index,),
+                               )
+                           ),
                            child: Text(
                              "Edit Kartu",
                              style: TextStyle(fontSize: 20.0),

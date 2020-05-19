@@ -1,112 +1,56 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart'as http;
-import 'dart:io';
-import 'package:knowme/services/information.dart';
-import 'package:knowme/services/person.dart';
-import 'package:provider/provider.dart';
-import 'package:knowme/pages/masukangambar.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:async/async.dart';
-import 'package:path/path.dart';
+import 'package:http/http.dart' as http;
+import 'package:knowme/pages/Dashboard.dart';
+import 'package:toast/toast.dart';
 
+class editKartuPage extends StatefulWidget {
 
-class TambahKartu extends StatefulWidget {
+  final List list;
+  final int index;
+
+  editKartuPage({this.list, this.index});
+
   @override
-  _TambahKartuState createState() => _TambahKartuState();
+  editKartuState createState() => editKartuState();
 }
 
-class _TambahKartuState extends State<TambahKartu> {
+class editKartuState extends State<editKartuPage> with SingleTickerProviderStateMixin{
 
-/*
-  void kirimdata(){
-    AlertDialog alertDialog = AlertDialog(
-      content: Container(
-        height: 250.0,
-        child: Column(
-          children: <Widget>[
-            Image.asset("assets/images/undraw_data_processing_yrrv.png", width: 250, fit: BoxFit.fitWidth, alignment: Alignment.topCenter,),
-            Text("Kartu akan ditambahkan"),
-            Padding(
-              padding: const EdgeInsets.only(top:5.0),
-              child: RaisedButton(
-                child: Text("Setuju"),
-                onPressed: ()=>Navigator.pop(context),
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-    showDialog(context: context, child: alertDialog);
-  }
-*/
-TextEditingController controllerNama = TextEditingController();
-TextEditingController controllerMasa = TextEditingController();
-TextEditingController controllerInfo1 = TextEditingController();
-TextEditingController controllerInfo2 = TextEditingController();
-TextEditingController controllerInfo3 = TextEditingController();
-//TextEditingController controllerScankartu = TextEditingController();
-TextEditingController controllerDitambahkan = TextEditingController();
+  TextEditingController controllerNama;
+  TextEditingController controllerMasa;
+  TextEditingController controllerInfo1;
+  TextEditingController controllerInfo2;
+  TextEditingController controllerInfo3;
+  TextEditingController controllerDitambahkan;
 
-  void adddata(){
-    var url="http://10.0.2.2/knowme/adddata.php";
-   // upload(_image);
-    http.post(url,body:{
-
-      "itemnama" : controllerNama.text,
-      "itemmasa" : controllerMasa.text,
-      "info1" : controllerInfo1.text,
-      "info2" : controllerInfo2.text,
-      "info3" : controllerInfo3.text,
-     // "scankartu" : controllerScankartu.text,
-      "ditambahkan" : controllerDitambahkan.text,
-    });
+  void editData(){
+    var url="http://10.0.2.2/knowme/editdata.php";
+        http.post(url, body: {
+          "id": widget.list[widget.index]['id'],
+          "itemnama": controllerNama.text,
+          "itemmasa": controllerMasa.text,
+          "info1": controllerInfo1.text,
+          "info2": controllerInfo2.text,
+          "info3": controllerInfo3.text,
+          "ditambahkan": controllerDitambahkan.text,
+        });
   }
 
-  File _image;
-  Future getImageGallery() async{
-    var imageFile = await ImagePicker.pickImage(source: ImageSource.gallery);
-
-    setState(() {
-      _image = imageFile;
-    });
-  }
-  Future getImageCamera() async{
-    var imageFile = await ImagePicker.pickImage(source: ImageSource.camera);
-
-    setState(() {
-      _image = imageFile;
-    });
-  }
-
-  Future upload(File imageFile) async{
-    var stream= new http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
-    var length = await imageFile.length();
-    var uri = Uri.parse("http://10.0.2.2/knowme/adddata.php");
-
-    var request = new http.MultipartRequest("POST", uri);
-    var multipartFile = new http.MultipartFile("image", stream, length, filename: basename(imageFile.path));
-
-    request.files.add(multipartFile);
-
-    var response = await request.send();
-
-    if(response.statusCode==200){
-      print("Image Uploaded");
-    }else{
-      print("Upload failed");
-    }
+  @override
+  void initState() {
+    controllerNama= TextEditingController(text: widget.list[widget.index]['nama_kartu']);
+    controllerMasa= TextEditingController(text: widget.list[widget.index]['masa_berlaku']);
+    controllerInfo1= TextEditingController(text: widget.list[widget.index]['informasi1']);
+    controllerInfo2= TextEditingController(text: widget.list[widget.index]['informasi2']);
+    controllerInfo3= TextEditingController(text: widget.list[widget.index]['informasi3']);
+    controllerDitambahkan= TextEditingController(text: widget.list[widget.index]['Ditambahkanpada']);
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Tambah Kartu"),
-        centerTitle: true,
-        elevation: 0,
-        backgroundColor: Colors.grey[900],
-      ),
       body: Container(
         padding: EdgeInsets.all(10.0),
         child: ListView(
@@ -114,11 +58,11 @@ TextEditingController controllerDitambahkan = TextEditingController();
             TextField(
               controller: controllerNama,
               decoration: InputDecoration(
-                hintText: "Contoh: KTP, KTM, dll",
-                labelText: "Nama Kartu",
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0)
-                )
+                  hintText: "Contoh: KTP, KTM, dll",
+                  labelText: "Nama Kartu",
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0)
+                  )
               ),
             ),
             Padding(padding: EdgeInsets.only(top: 20.0),),
@@ -231,58 +175,31 @@ TextEditingController controllerDitambahkan = TextEditingController();
               controller: controllerDitambahkan,
               decoration: InputDecoration(
                   hintText: "Contoh: 29-08-2020",
-                  labelText: "Ditambahkan pada",
+                  labelText: "Diedit pada",
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0)
                   )
               ),
-            ), /*
-            Column(
-              children: <Widget>[
-                Center(
-                  child: _image== null
-                      ? Text("Belum ada gambar yang dipilih") : Image.file(_image),
-                ),
-                Row(
-                  children: <Widget>[
-                    RaisedButton(
-                      child: Icon(Icons.image),
-                      onPressed: getImageGallery,
-                    ),
-                    RaisedButton(
-                      child: Icon(Icons.camera_alt),
-                      onPressed: getImageCamera,
-                    ),
-                    Expanded(child: Container(),),
-                    RaisedButton(
-                      child: Text("Unggah Foto"),
-                      onPressed: (){
-                       // upload(_image);
-                      },
-                    ),
-                  ],
-                ),
-              ],
-            ), */
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 120.0),
               child: RaisedButton(
-                child: Text("Tambah Kartu", style: TextStyle(color: Colors.white),),
+                child: Text("Edit Kartu", style: TextStyle(color: Colors.white),),
                 color: Colors.blue,
                 onPressed: (){
-                  adddata();
-                  Navigator.pop(context);
-                  },
+                  editData();
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (BuildContext context)=>dashboardPage(),
+                    )
+                  );
+                  Toast.show("Berhasil Mengedit Kartu", context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);
+                },
               ),
             ),
           ],
         ),
-    ),
-
+      ),
     );
   }
 }
-
-
-
-
