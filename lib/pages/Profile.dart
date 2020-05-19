@@ -6,7 +6,7 @@ class profilePage extends StatefulWidget {
   profileState createState() => profileState();
 }
 
-class profileState extends State<profilePage>{
+class profileState extends State<profilePage> with SingleTickerProviderStateMixin{
   @override
   Widget build(BuildContext context) {
     return Scaffold(

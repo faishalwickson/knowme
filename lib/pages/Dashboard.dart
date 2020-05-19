@@ -3,7 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
+import 'package:knowme/pages/detaiKartu.dart';
 import 'package:knowme/pages/formtambahkartu.dart';
+import './detaiKartu.dart';
 
 class dashboardPage extends StatefulWidget {
   @override
@@ -47,71 +49,7 @@ class dashboardState extends State<dashboardPage>{
         },
       ),
 
-          /*
-      ListView(
-        scrollDirection: Axis.vertical,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
-            child: Text(
-              'Daftar Kartu',
-              style: TextStyle(fontSize: 20.00, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
-            ),
-          ),
-        Padding(
-          padding: EdgeInsets.all(15),
-          child:  Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20.0),
-            ),
-            elevation: 5,
-            child: ListTile(
-              contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 5),
-              title: Padding(
-                padding: EdgeInsets.only(left:8.0, right:8, top: 2.0, bottom: 0),
-                child: ClipRRect(
-                  borderRadius: new BorderRadius.only(topLeft: Radius.circular(20.00), topRight: Radius.circular(20.0)),
-                  child: Image(
-                    height: 170,
-                    fit: BoxFit.fitWidth,
-                    alignment: Alignment.topCenter,
-                    image: AssetImage('assets/images/KTP.jpg'),
-                  ),
-                ),
-              ),
-              subtitle: Padding(
-                padding: EdgeInsets.fromLTRB(10, 12, 10, 10),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      'Kartu Tanda Penduduk',
-                      textAlign: TextAlign.left,
-                      style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      'Ditambahkan Pada 16/05/2020',
-                      textAlign: TextAlign.left,
-                      style: TextStyle(fontSize: 12),
-                    ),
-                    Padding(
-                padding: const EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
-                child: Text(
-                  'Daftar Kartu',
-                  style: TextStyle(fontSize: 20.00, fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-                  ],
-                )
-              ),
-            ),
-          ),
-        )
-        ],
-      ), */
+
         floatingActionButton: FloatingActionButton(
           onPressed: ()=>Navigator.of(context).push(
             MaterialPageRoute(
@@ -125,6 +63,10 @@ class dashboardState extends State<dashboardPage>{
         )
     );
   }
+
+
+//<<<<<<< HEAD
+//=======
 }
 class ItemList extends StatelessWidget {
   final List list;
@@ -143,47 +85,54 @@ class ItemList extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20.0),
                   ),
                   elevation: 5,
-                  child: ListTile(
-                    contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 5),
-                    title: Padding(
-                      padding: EdgeInsets.only(left:8.0, right:8, top: 2.0, bottom: 0),
-                      child: ClipRRect(
-                        borderRadius: new BorderRadius.only(topLeft: Radius.circular(20.00), topRight: Radius.circular(20.0)),
-                        child: Image(
-                          height: 170,
-                          fit: BoxFit.fitWidth,
-                          alignment: Alignment.topCenter,
-                          image: AssetImage('assets/images/${list[i]['scan_kartu']}'),
+                  child: GestureDetector(
+                    onTap: ()=>Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (BuildContext context)=> detailKartuPage(list: list, index: i,)
+                      )
+                    ),
+                    child: ListTile(
+                      contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 5),
+                      title: Padding(
+                        padding: EdgeInsets.only(left:8.0, right:8, top: 2.0, bottom: 0),
+                        child: ClipRRect(
+                          borderRadius: new BorderRadius.only(topLeft: Radius.circular(20.00), topRight: Radius.circular(20.0)),
+                          child: Image(
+                            height: 170,
+                            fit: BoxFit.fitWidth,
+                            alignment: Alignment.topCenter,
+                            image: AssetImage('assets/images/${list[i]['scan_kartu']}'),
+                          ),
                         ),
                       ),
-                    ),
-                    subtitle: Padding(
-                        padding: EdgeInsets.fromLTRB(10, 12, 10, 10),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              list[i]['nama_kartu'],
-                              textAlign: TextAlign.left,
-                              style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-                            ),
-                            Row(
-                              children: <Widget>[
-                                Text(
-                                  'Ditambahkan pada: ',
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(fontSize: 12),
-                                ),
-                                Text(
-                                  list[i]['Ditambahkanpada'] ,
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(fontSize: 12),
-                                ),
-                              ],
-                            ),
-                          ],
-                        )
+                      subtitle: Padding(
+                          padding: EdgeInsets.fromLTRB(10, 12, 10, 10),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                list[i]['nama_kartu'],
+                                textAlign: TextAlign.left,
+                                style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                              ),
+                              Row(
+                                children: <Widget>[
+                                  Text(
+                                    'Ditambahkan pada: ',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(fontSize: 12),
+                                  ),
+                                  Text(
+                                    list[i]['Ditambahkanpada'] ,
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(fontSize: 12),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          )
+                      ),
                     ),
                   ),
                 ),
@@ -193,41 +142,5 @@ class ItemList extends StatelessWidget {
         },
     );
   }
+//>>>>>>> 97b30d62667a2bcaf725d04c07982de65ec1d280
 }
-
-
-/*Column(
-             children: <Widget>[
-               Container(
-                   width: 334,
-                   height: 143,
-                   child: ClipRRect(
-                     borderRadius: new BorderRadius.only(topLeft: Radius.circular(24.00), topRight: Radius.circular(24.0)),
-                     child: Image(
-                       fit: BoxFit.fitWidth,
-                       alignment: Alignment.topCenter,
-                       image: AssetImage('assets/images/KTP.jpg'),
-                     ),
-                   )
-               ),
-               Padding(
-                 padding: const EdgeInsets.fromLTRB(13.0, 8.0, 131.0, 8.0),
-                 child: Column(
-                   mainAxisAlignment: MainAxisAlignment.start,
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: <Widget>[
-                     Text(
-                       'Kartu Tanda Penduduk',
-                       textAlign: TextAlign.left,
-                       style: TextStyle(fontSize: 15),
-                     ),
-                     Text(
-                       'Ditambahkan Pada 16/05/2020',
-                       textAlign: TextAlign.left,
-                       style: TextStyle(fontSize: 12),
-                     ),
-                   ],
-                 ),
-               ),
-             ],
-           ),*/
