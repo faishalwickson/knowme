@@ -59,14 +59,10 @@ class dashboardState extends State<dashboardPage>{
             //Navigator.pushNamed(context,'/formtambahkartu');
 
           child: Icon(Icons.add),
-          backgroundColor: Colors.grey[900],
+          backgroundColor: Colors.blue,
         )
     );
   }
-
-
-//<<<<<<< HEAD
-//=======
 }
 class ItemList extends StatelessWidget {
   final List list;
@@ -142,5 +138,4 @@ class ItemList extends StatelessWidget {
         },
     );
   }
-//>>>>>>> 97b30d62667a2bcaf725d04c07982de65ec1d280
 }

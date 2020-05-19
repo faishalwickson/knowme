@@ -40,7 +40,7 @@ class _HomeState extends State<Home> {
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home,),
-              title: Text('Dasbor'),
+              title: Text('Beranda'),
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.import_export),

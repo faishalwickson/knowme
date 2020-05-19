@@ -1,11 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:knowme/services/person.dart';
+import 'dart:convert';
+import 'dart:async';
+import 'package:http/http.dart' as http;
+import 'package:knowme/pages/Home.dart';
+
 class Mengirim extends StatefulWidget {
   @override
   _MengirimState createState() => _MengirimState();
 }
 
 class _MengirimState extends State<Mengirim> {
+  TextEditingController controllerusername = TextEditingController();
+  TextEditingController controllerwaktu= TextEditingController();
+  TextEditingController controllerketerangan = TextEditingController();
+
+  void addminta(){
+    var url="http://10.0.2.2/knowme/addkirim.php";
+    http.post(url,body:{
+      "username":controllerusername.text,
+      "tanggal": controllerwaktu.text,
+    });
+  }
 
   void setupPerson(){
     Person instance = Person(nama: 'Kesbor', username: '@kesborian', foto: 'jakob-owens-bQ0TogIULCM-unsplash.jpg');
@@ -22,13 +38,32 @@ class _MengirimState extends State<Mengirim> {
         height: 300.0,
         child: Column(
           children: <Widget>[
-            Image.asset("assets/images/undraw_deliveries_131a.png", width: 380, fit: BoxFit.fitWidth, alignment: Alignment.topCenter,),
+            Image.asset("assets/images/undraw_deliveries_131a.png", width: 360, fit: BoxFit.fitWidth, alignment: Alignment.topCenter,),
             Text("Datamu sudah terkirim!"),
             Padding(
               padding: const EdgeInsets.only(top:15.0),
-              child: RaisedButton(
-                child: Text("Kembali"),
-                onPressed: ()=>Navigator.pop(context),
+              child: SizedBox(
+                width: 120,
+                child: RaisedButton(
+                  color: Colors.blue,
+                  child:  Row(
+                    children: <Widget>[
+                      Icon(Icons.home, color: Colors.white,),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                        child: Text("Kembali", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+                      ),
+                    ],
+                  ),
+                    onPressed: (){
+                      addminta();
+                      Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (BuildContext context)=>Home(),
+                          )
+                      );
+                    }
+                ),
               ),
             ),
           ],
@@ -46,6 +81,23 @@ class _MengirimState extends State<Mengirim> {
           padding: EdgeInsets.all(20.0),
           child: ListView(
             children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(top: 5, left: 10),
+                child: Text("Masukkan username", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 10.0, bottom: 10),
+                child: TextField(
+                  controller: controllerusername,
+                  decoration: InputDecoration(
+                      hintText: "Contoh: @kekeyipentol",
+                      labelText: "masukan username yang dituju",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0)
+                      )
+                  ),
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.all(10),
                 child: Text("Pilih datamu yang akan dikirim", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
@@ -232,6 +284,23 @@ class _MengirimState extends State<Mengirim> {
                 ),
               ),
               Padding(
+                padding: const EdgeInsets.only(left: 10, top:20),
+                child: Text("Tambahkan Waktu Transaksi", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 10.0),
+                child:  TextField(
+                  controller: controllerwaktu,
+                  decoration: InputDecoration(
+                      hintText: "Contoh: 2020-06-09",
+                      labelText: "Tanggal",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0)
+                      )
+                  ),
+                ),
+              ),
+              Padding(
                 padding: const EdgeInsets.only(top:20),
                 child: Text("Pilih Hak Akses bagi penerima", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
               ),
@@ -321,8 +390,9 @@ class _MengirimState extends State<Mengirim> {
             kirimdata();
           },
           child: Icon(Icons.send),
-          backgroundColor: Colors.grey[900],
-        )
+          backgroundColor: Colors.blue,
+        ),
+
     );
   }
 }
