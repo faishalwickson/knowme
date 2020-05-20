@@ -1,4 +1,8 @@
+import 'dart:convert';
+import 'dart:async';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:knowme/pages/Home.dart';
 import 'package:knowme/services/person.dart';
 
 class Meminta extends StatefulWidget {
@@ -7,6 +11,20 @@ class Meminta extends StatefulWidget {
 }
 
 class _MemintaState extends State<Meminta> {
+  DateTime _dateTime= DateTime.now();
+  TextEditingController controllerusername = TextEditingController();
+  TextEditingController controllerwaktu= TextEditingController();
+  TextEditingController controllerketerangan = TextEditingController();
+
+  void addminta(){
+    var url="http://10.0.2.2/knowme/addminta.php";
+    http.post(url,body:{
+      "username":controllerusername.text,
+      "tanggal": controllerwaktu.text,
+      "keterangan": controllerketerangan.text,
+    });
+  }
+
   void setupPerson(){
     Person instance = Person(nama: 'Kesbor', username: '@kesborian', foto: 'jakob-owens-bQ0TogIULCM-unsplash.jpg');
   }
@@ -15,6 +33,10 @@ class _MemintaState extends State<Meminta> {
     Person(nama:'Asep Uyey', username: '@japasceria', foto: 'fred-moon-vSI2KnI4Abc-unsplash.jpg'),
     Person(nama:'Data Kelas R06', username: '@ujhez, @japas ceria, ...',foto: 'helena-lopes-PGnqT0rXWLs-unsplash.jpg'),
   ];
+  Future<List> getData() async{
+    final response=await http.get("http://10.0.2.2/knowme/getdata.php");
+    return json.decode(response.body);
+  }
 
   void kirimdata(){
     AlertDialog alertDialog = AlertDialog(
@@ -26,9 +48,28 @@ class _MemintaState extends State<Meminta> {
             Text("Permintaanmu sudah terkirim!"),
             Padding(
               padding: const EdgeInsets.only(top:8.0),
-              child: RaisedButton(
-                child: Text("Kembali"),
-                onPressed: ()=>Navigator.pop(context),
+              child: SizedBox(
+                width: 120,
+                child: RaisedButton(
+                  color: Colors.blue,
+                  child: Row(
+                    children: <Widget>[
+                      Icon(Icons.home, color: Colors.white,),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                        child: Text("Kembali", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+                      ),
+                    ],
+                  ),
+                  onPressed: (){
+                    addminta();
+                    Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (BuildContext context)=>Home(),
+                        )
+                    );
+                  }
+                ),
               ),
             ),
           ],
@@ -45,7 +86,7 @@ class _MemintaState extends State<Meminta> {
       body: Container(
         padding: EdgeInsets.all(20.0),
         child: ListView(
-          children: <Widget>[
+          children: <Widget>[ /*
             Row(
               children: <Widget>[
                 CircleAvatar(
@@ -61,6 +102,23 @@ class _MemintaState extends State<Meminta> {
                   ],
                 ),
               ],
+            ), */
+            Padding(
+              padding: const EdgeInsets.only(top: 25, left: 10),
+              child: Text("Masukkan username", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10.0),
+              child: TextField(
+                controller: controllerusername,
+                decoration: InputDecoration(
+                    hintText: "Contoh: @kekeyipentol",
+                    labelText: "masukan username yang dituju",
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0)
+                    )
+                ),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 25, left: 10),
@@ -249,6 +307,38 @@ class _MemintaState extends State<Meminta> {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 10, top:20),
+              child: Text("Tambahkan Waktu Transaksi", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10.0),
+              child:  TextField(
+                controller: controllerwaktu,
+                decoration: InputDecoration(
+                    hintText: "Contoh: 2020-06-09",
+                    labelText: "Tanggal",
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0)
+                    )
+                ),
+              ),
+            ),/*
+              Column(
+                children: <Widget>[
+                  RaisedButton(
+                    child: Text("Pilih Tanggal"),
+                    onPressed: (){
+                      showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime(2001), lastDate: DateTime(2022)).then((date){
+                        setState(() {
+                          _dateTime = date;
+                        });
+                      });
+                    },
+                  ),
+                ],
+              ) */
+
+            Padding(
+              padding: const EdgeInsets.only(left: 10, top:20),
               child: Text("Tambahkan keterangan", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
             ),
             Padding(
@@ -258,6 +348,7 @@ class _MemintaState extends State<Meminta> {
             Padding(
               padding: const EdgeInsets.only(top: 10.0),
               child: TextField(
+                controller: controllerketerangan,
                 maxLines: 3,
                 decoration: InputDecoration(
                     hintText: "Contoh: Saya meminta data anda untuk administrasi pekerjaan",
@@ -276,7 +367,7 @@ class _MemintaState extends State<Meminta> {
             kirimdata();
           },
           child: Icon(Icons.send),
-          backgroundColor: Colors.grey[900],
+          backgroundColor: Colors.blue,
         )
     );
   }
