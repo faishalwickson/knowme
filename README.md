@@ -49,7 +49,7 @@ Aplikasi ini menyimpan kumpulan identitas kependudukan yang dimasukkan oleh peng
 
 # User Story
 
-Target aplikasi kita adalah seorang mahasiswa yang kebingungan dalam meminta data pribadi teman-temannya. Kebanyakan mahasiswa masih meminta data teman-temannya secara manual contohnya ditulis tangan, mengisi di google form, atau dengan mengisi di notes grup line. 
+Target aplikasi kita adalah seorang mahasiswa atau orang yang bekerja yang kebingungan dalam meminta data pribadi rekan-rekannya. Kebanyakan mahasiswa dan para pekerja masih meminta data rekan-rekannya secara manual contohnya ditulis tangan, mengisi di google form, atau dengan mengisi di notes grup line. 
 
 # Use Case Diagram
 
@@ -78,5 +78,15 @@ Target aplikasi kita adalah seorang mahasiswa yang kebingungan dalam meminta dat
 ![pijan3](https://user-images.githubusercontent.com/60166820/82122620-efbddf80-97be-11ea-92c6-d0a126843d7c.jpg)
 
 # Hasil Implementasi
+
+![1589940942576](https://user-images.githubusercontent.com/48080553/82397565-ea8cb900-9a7a-11ea-8224-a478fc1d0b13.jpg)
+
+![1589940986348](https://user-images.githubusercontent.com/48080553/82397584-f7111180-9a7a-11ea-84f7-923f2b5aa17e.jpg)
+
+![1589941006575](https://user-images.githubusercontent.com/48080553/82397611-03956a00-9a7b-11ea-8fd4-0210ec37c3fb.jpg)
+
+![1589941034434](https://user-images.githubusercontent.com/48080553/82397639-127c1c80-9a7b-11ea-9d6d-ef12195322fe.jpg)
+
+![1589941057695](https://user-images.githubusercontent.com/48080553/82397676-2162cf00-9a7b-11ea-8b83-b0db9896a054.jpg)
 
 
