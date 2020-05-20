@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:knowme/pages/Dashboard.dart';
+import 'package:knowme/pages/Home.dart';
 import 'package:toast/toast.dart';
 
 class editKartuPage extends StatefulWidget {
@@ -190,7 +191,7 @@ class editKartuState extends State<editKartuPage> with SingleTickerProviderState
                   editData();
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (BuildContext context)=>dashboardPage(),
+                      builder: (BuildContext context)=>Home(),
                     )
                   );
                   Toast.show("Berhasil Mengedit Kartu", context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:knowme/pages/Home.dart';
 import 'package:knowme/pages/editKartu.dart';
 import 'package:http/http.dart' as http;
 import 'package:toast/toast.dart';
@@ -35,7 +36,7 @@ class detailKartuState extends State<detailKartuPage> with SingleTickerProviderS
             deleteData();
             Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (BuildContext context)=>dashboardPage(),
+                  builder: (BuildContext context)=>Home(),
                 )
             );
             Toast.show("Berhasil Menghapus Kartu", context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);

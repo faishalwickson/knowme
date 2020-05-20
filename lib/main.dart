@@ -12,7 +12,7 @@ import 'package:knowme/pages/masukaninfo.dart';
 import 'package:knowme/pages/masukangambar.dart';
 
 void main() => runApp(MaterialApp(
-  initialRoute: '/home',
+  initialRoute: '/Login',
   routes:{
     '/Riwayat': (context) => Riwayat(),
     '/home': (context) => Home(),
